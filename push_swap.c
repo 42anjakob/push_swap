@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
+// #include <stdio.h>
 
-int	check_user_input(char **argv)
+int	check_user_input(const char **argv)
 {
 	int	i;
 	int	j;
@@ -33,36 +33,41 @@ int	check_user_input(char **argv)
 	return (1);
 }
 
-void	fill(int *a, char **argv)
+void	fill(size_t *a, const char **argv)
 {
-	int	n;
-	int	i;
+	long	n;
+	int		i;
 
 	i = 1;
 	while (argv[i])
 	{
 		n = ft_atoi(argv[i]);
-		if (n < 0)
-			n = -n;
-		else
-			n += 2147483649; // maybe some quirks with max negative num. Yes quirks -1 being the lowest negative number you can have
+		n += 2147483648;
 		a[i - 1] = n;
 		i++;
 	}
 	a[i - 1] = 0;
 }
 
-// void	index(int *a)
-// {
-// 	// loop to find the smallest number. Second... so on...
-// }
+void	simple_sort(size_t *a, size_t *b)
+{
+	size_t	*a_rray = a;
+	size_t	*b_rray = b;
 
-// void	sort(int *a, int *b)
-// {
-// 	// algorithm
-// }
+	a_rray = b_rray;
+	// algorithm
+}
 
-int	main(int argc, char **argv)
+void	radix_sort(size_t *a, size_t *b)
+{
+	size_t	*a_rray = a;
+	size_t	*b_rray = b;
+
+	a_rray = b_rray;
+	// algorithm
+}
+
+int	main(const int argc, const char **argv)
 {
 	size_t		*a;
 	size_t		*b;
@@ -75,9 +80,11 @@ int	main(int argc, char **argv)
 	b = malloc(sizeof(size_t) * argc);
 	if (!b)
 		return (free(a), 0);
-	// fill(a, argc, argv);
-	// index(a);
-	// sort(a, b);
+	fill(a, argv);
+	if (argc <= 6)
+		simple_sort(a, b);
+	else
+		radix_sort(a, b);
 	free(a);
 	free(b);
 	return (1);
