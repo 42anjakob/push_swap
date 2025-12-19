@@ -16,6 +16,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int	ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 
 #endif
