@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anjakob <anjakob@student.42heilbronn.de>   #+#  +:+       +#+        */
+/*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-12-18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2025-12-18 13:37:47 by anjakob          ###   ########.fr       */
+/*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
+/*   Updated: 2025/12/24 17:07:54 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 // #include <stdio.h>
 
-int	check_user_input(const char **argv) // modified atoi() with error handling / exit()
+// ERROR HANDELING
+int	is_int(const char **argv)
 {
-	int	i;
-	int	j;
+	long long	num;
+	int			i;
+	int			j;
 
 	i = 1;
 	while (argv[i])
@@ -28,12 +30,36 @@ int	check_user_input(const char **argv) // modified atoi() with error handling /
 				return (0);
 			j++;
 		}
+		num = ft_atol(argv[i]);
+		if (num < -2147483648 || num > 2147483647)
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	fill(size_t *a, const char **argv)
+int	is_dup(const char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[j])
+		{
+			if (ft_strcmp(argv[i], argv[j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+// SORT
+void	fill(size_t *a, const char **argv) // or index
 {
 	long	n;
 	int		i;
@@ -41,50 +67,27 @@ int	fill(size_t *a, const char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		n = ft_atoi(argv[i]);
+		n = ft_atol(argv[i]);
 		n += 2147483648;
-		if (n < 0 || n > 4294967295)
-			return (free(a), 0);
 		a[i - 1] = n;
 		i++;
 	}
 	a[i - 1] = 0;
-	return (1);
 }
 
-int	dup(const size_t *a, const int argc)
+void	simple_sort(a_stack *a, b_stack *b)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < argc - 1)
-	{
-		j = 0;
-		while (a[j])
-		{
-			if (a[i] == a[j])
-				return (free(a), 0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-void	simple_sort(size_t *a, size_t *b)
-{
-	size_t	*a_rray = a;
-	size_t	*b_rray = b;
+	a_stack	*a_rray = a;
+	b_stack	*b_rray = b;
 
 	a_rray = b_rray;
 	// algorithm
 }
 
-void	radix_sort(size_t *a, size_t *b)
+void	radix_sort(a_stack *a, b_stack *b)
 {
-	size_t	*a_rray = a;
-	size_t	*b_rray = b;
+	a_stack	*a_rray = a;
+	b_stack	*b_rray = b;
 
 	a_rray = b_rray;
 	// algorithm
@@ -92,26 +95,34 @@ void	radix_sort(size_t *a, size_t *b)
 
 int	main(const int argc, const char **argv)
 {
-	size_t		*a;
-	size_t		*b;
+	a_stack	a;
+	b_stack	b;
 
-	if (argc <= 1)
+	// error handling
+	if (argc < 2)
 		return (0);
-	if (!check_user_input(argv))
+	if (!is_int(argv) || is_dup(argv))
 		return (write(1, "Error\n", 6), 0);
-	a = malloc(sizeof(size_t) * argc);
-	if (!a)
+
+	// alloc stacks
+	a.stack = malloc(sizeof(size_t) * argc);
+	if (!a.stack)
 		return (write(1, "Error\n", 6), 0);
-	b = malloc(sizeof(size_t) * argc);
-	if (!b)
-		return (free(a), write(1, "Error\n", 6), 0);
-	if (!fill(a, argv) && !dup(a, argc))
-		return (write(1, "Error\n", 6), 0);
+	b.stack = malloc(sizeof(size_t) * argc);
+	if (!b.stack)
+		return (free(a.stack), write(1, "Error\n", 6), 0);
+	a.len = argc - 1;
+	b.len = 0;
+
+	// sort
+	fill(a.stack, argv); // indexing
 	if (argc <= 6)
 		simple_sort(a, b);
 	else
 		radix_sort(a, b);
-	free(a);
-	free(b);
+	
+	// free
+	free(a.stack);
+	free(b.stack);
 	return (1);
 }
