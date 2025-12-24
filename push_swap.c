@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2025/12/24 17:14:20 by anjakob          ###   ########.fr       */
+/*   Updated: 2025/12/24 17:19:21 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	is_dup(const char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		j = 0;
-		while (argv[j])
+		j = 1;
+		while (argv[i + j])
 		{
-			if (ft_strcmp(argv[i], argv[j]))
+			if (!ft_strcmp(argv[i], argv[i + j]))
 				return (1);
 			j++;
 		}
