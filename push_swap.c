@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2025/12/24 17:07:54 by anjakob          ###   ########.fr       */
+/*   Updated: 2025/12/24 17:14:20 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	simple_sort(a_stack *a, b_stack *b)
 	a_stack	*a_rray = a;
 	b_stack	*b_rray = b;
 
-	a_rray = b_rray;
+	a_rray->len = b_rray->len;
 	// algorithm
 }
 
@@ -89,7 +89,7 @@ void	radix_sort(a_stack *a, b_stack *b)
 	a_stack	*a_rray = a;
 	b_stack	*b_rray = b;
 
-	a_rray = b_rray;
+	a_rray->len = b_rray->len;
 	// algorithm
 }
 
@@ -117,9 +117,9 @@ int	main(const int argc, const char **argv)
 	// sort
 	fill(a.stack, argv); // indexing
 	if (argc <= 6)
-		simple_sort(a, b);
+		simple_sort(&a, &b);
 	else
-		radix_sort(a, b);
+		radix_sort(&a, &b);
 	
 	// free
 	free(a.stack);
