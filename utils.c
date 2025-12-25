@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 14:10:13 by anjakob           #+#    #+#             */
-/*   Updated: 2025/12/25 18:26:32 by anjakob          ###   ########.fr       */
+/*   Updated: 2025/12/25 18:36:08 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,16 @@ int	is_int(char **arg)
 	while (arg[i])
 	{
 		j = 0;
+		if (arg[i][j] == '-' && arg[i][j] == '+')
+			j++;
 		while (arg[i][j])
 		{
-			if (arg[i][j] != '-' && arg[i][j] != '+'
-				&& (arg[i][j] < '0' || arg[i][j] > '9'))
+			if (arg[i][j] < '0' || arg[i][j] > '9')
 				return (0);
 			j++;
 		}
 		num = ft_atol(arg[i]);
-		if (j > 10 || (num < -2147483648 || num > 2147483647))
+		if (j > 11 || (num < -2147483648 || num > 2147483647))
 			return (0);
 		i++;
 	}
