@@ -6,123 +6,71 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2025/12/24 17:19:21 by anjakob          ###   ########.fr       */
+/*   Updated: 2025/12/25 18:26:17 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 // #include <stdio.h>
 
-// ERROR HANDELING
-int	is_int(const char **argv)
-{
-	long long	num;
-	int			i;
-	int			j;
-
-	i = 1;
-	while (argv[i])
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if ((argv[i][j] != '-' || argv[i][j] != '+') && (argv[i][j] < '0' || argv[i][j] > '9'))
-				return (0);
-			j++;
-		}
-		num = ft_atol(argv[i]);
-		if (num < -2147483648 || num > 2147483647)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	is_dup(const char **argv)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (argv[i])
-	{
-		j = 1;
-		while (argv[i + j])
-		{
-			if (!ft_strcmp(argv[i], argv[i + j]))
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
 // SORT
-void	fill(size_t *a, const char **argv) // or index
+void	simple_sort(t_a_stack *a, t_b_stack *b)
 {
-	long	n;
-	int		i;
+	t_a_stack	*a_rray;
+	t_b_stack	*b_rray;
 
-	i = 1;
-	while (argv[i])
-	{
-		n = ft_atol(argv[i]);
-		n += 2147483648;
-		a[i - 1] = n;
-		i++;
-	}
-	a[i - 1] = 0;
-}
-
-void	simple_sort(a_stack *a, b_stack *b)
-{
-	a_stack	*a_rray = a;
-	b_stack	*b_rray = b;
-
+	a_rray = a;
+	b_rray = b;
 	a_rray->len = b_rray->len;
-	// algorithm
 }
 
-void	radix_sort(a_stack *a, b_stack *b)
+void	radix_sort(t_a_stack *a, t_b_stack *b)
 {
-	a_stack	*a_rray = a;
-	b_stack	*b_rray = b;
+	t_a_stack	*a_rray;
+	t_b_stack	*b_rray;
 
+	a_rray = a;
+	b_rray = b;
 	a_rray->len = b_rray->len;
-	// algorithm
 }
 
-int	main(const int argc, const char **argv)
+int	main(const int argc, char **argv)
 {
-	a_stack	a;
-	b_stack	b;
+	t_a_stack	a;
+	t_b_stack	b;
+	char		**arg;
 
+	arg = argv;
 	// error handling
 	if (argc < 2)
 		return (0);
-	if (!is_int(argv) || is_dup(argv))
-		return (write(1, "Error\n", 6), 0);
-
+	else if (argc == 2)
+	{
+		arg = ft_split(argv[1], ' ');
+		if (!arg)
+			return (err(argc, arg, a.stack, b.stack), 1);
+	}
+	if (!is_int(arg) || is_dup(arg))
+		return (err(argc, arg, a.stack, b.stack), 2);
 	// alloc stacks
 	a.stack = malloc(sizeof(size_t) * argc);
 	if (!a.stack)
-		return (write(1, "Error\n", 6), 0);
+		return (err(argc, arg, a.stack, b.stack), 3);
 	b.stack = malloc(sizeof(size_t) * argc);
 	if (!b.stack)
-		return (free(a.stack), write(1, "Error\n", 6), 0);
+		return (free(a.stack), err(argc, arg, a.stack, b.stack), 4);
 	a.len = argc - 1;
 	b.len = 0;
-
 	// sort
-	fill(a.stack, argv); // indexing
+	fill(a.stack, arg);
 	if (argc <= 6)
 		simple_sort(&a, &b);
 	else
 		radix_sort(&a, &b);
-	
 	// free
+	if (argc == 2)
+		ft_freeptr((void **)arg);
 	free(a.stack);
 	free(b.stack);
-	return (1);
+	return (0);
 }

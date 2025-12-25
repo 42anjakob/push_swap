@@ -6,46 +6,80 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 14:10:13 by anjakob           #+#    #+#             */
-/*   Updated: 2025/12/24 16:41:19 by anjakob          ###   ########.fr       */
+/*   Updated: 2025/12/25 18:26:32 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long	ft_atol(const char *s)
-{
-	long	res;
-	long	sign;
+#include "push_swap.h"
 
-	res = 0;
-	sign = 1;
-	while (*s == '\t' || *s == '\n' || *s == '\v'
-		|| *s == '\f' || *s == '\r' || *s == ' ')
-		s++;
-	if (*s == '-')
-		sign = -1;
-	if (*s == '-' || *s == '+')
-		s++;
-	while (s && *s >= '0' && *s <= '9')
-	{
-		res = res * 10 + (*s - '0');
-		s++;
-	}
-	return (res * sign);
+void	err(int argc, char **arg, size_t *a, size_t *b)
+{
+	if (argc == 2)
+		ft_freeptr((void **)arg);
+	if (a)
+		free(a);
+	if (b)
+		free(b);
+	write(1, "Error\n", 6);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	is_int(char **arg)
 {
-	unsigned char	*cast_s1;
-	unsigned char	*cast_s2;
-	int					i;
+	long	num;
+	int		i;
+	int		j;
 
-	cast_s1 = (unsigned char *)s1;
-	cast_s2 = (unsigned char *)s2;
-	i = 0;
-	if (!s1 && !s2)
-		return (0);
-	if (!s1 || !s2)
-		return (!s1) ? -1 : 1;
-	while (cast_s1[i] && cast_s2[i] && cast_s1[i] == cast_s2[i])
+	i = 1;
+	while (arg[i])
+	{
+		j = 0;
+		while (arg[i][j])
+		{
+			if (arg[i][j] != '-' && arg[i][j] != '+'
+				&& (arg[i][j] < '0' || arg[i][j] > '9'))
+				return (0);
+			j++;
+		}
+		num = ft_atol(arg[i]);
+		if (j > 10 || (num < -2147483648 || num > 2147483647))
+			return (0);
 		i++;
-	return (cast_s1[i] - cast_s2[i]);
+	}
+	return (1);
+}
+
+int	is_dup(char **arg)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (arg[i])
+	{
+		j = 1;
+		while (arg[i + j])
+		{
+			if (!ft_strcmp(arg[i], arg[i + j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	fill(size_t *a, char **arg)
+{
+	long	n;
+	int		i;
+
+	i = 1;
+	while (arg[i])
+	{
+		n = ft_atol(arg[i]);
+		n += 2147483648;
+		a[i - 1] = n;
+		i++;
+	}
+	a[i - 1] = 0;
 }
