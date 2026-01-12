@@ -31,7 +31,8 @@ typedef struct b_stack
 void	err(int argc, char **arg, size_t *a, size_t *b);
 int		is_int(char **arg);
 int		is_dup(char **arg);
-void	fill(size_t *a, char **arg);
+void	fill_index(t_a_stack *a, char **arg);
+int		is_sorted(t_a_stack *a);
 
 // sort.c
 void	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len);

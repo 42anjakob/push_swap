@@ -71,17 +71,45 @@ int	is_dup(char **arg)
 	return (0);
 }
 
-void	fill(size_t *a, char **arg)
+void	fill_index(t_a_stack *a, char **arg)
 {
-	long	n;
-	int		i;
+	size_t	i;
+	size_t	j;
+	size_t	k;
+
+	i = -1;
+	while (arg[++i])
+		a->stack[i] = ft_atol(arg[i]);
+	i = -1;
+	while (++i < a->len)
+	{
+		j = 0;
+		while (j++ < a->len)
+		{
+			if (a->stack[j] > i)
+			{
+				k = j;
+				break ;
+			}
+		}
+		j = -1;
+		while (++j < a->len)
+			if (a->stack[k] > a->stack[j] && a->stack[j] > i)
+				k = j;
+		a->stack[k] = i;
+	}
+}
+
+int	is_sorted(t_a_stack *a)
+{
+	size_t	i;
 
 	i = 0;
-	while (arg[i])
+	while (i < a->len - 1)
 	{
-		n = ft_atol(arg[i]);
-		n += 2147483648;
-		a[i] = n;
+		if (a->stack[i] > a->stack[i + 1])
+			return (0);
 		i++;
 	}
+	return (1);
 }

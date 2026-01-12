@@ -57,6 +57,8 @@ void	bits_loop(t_a_stack *a, t_b_stack *b)
 	bits = 32;
 	while (bits--)
 	{
+		if (is_sorted(a))
+			break ;
 		radix_sort(a, b);
 		i = 0;
 		while (i < a->len)
@@ -103,7 +105,7 @@ int	main(const int argc, char **argv)
 	b.len = 0;
 
 	// sort
-	fill(a.stack, arg_s);
+	fill_index(&a, arg_s);
 	if (a.len <= 6)
 		simple_sort(&a, &b);
 	else
