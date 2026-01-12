@@ -3,7 +3,9 @@ NAME	=	push_swap
 CFLAGS	=	-Wall -Wextra -Werror
 
 SRCS	=	push_swap.c \
-			utils.c
+			utils.c \
+			sort.c
+
 LIBFT	=	libft/libft.a
 
 OBJS	=	${SRCS:.c=.o}

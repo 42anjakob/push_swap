@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:49 by anjakob           #+#    #+#             */
-/*   Updated: 2025/12/25 18:26:25 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/12 07:12:51 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
 
 typedef struct a_stack
 {
@@ -34,5 +32,9 @@ void	err(int argc, char **arg, size_t *a, size_t *b);
 int		is_int(char **arg);
 int		is_dup(char **arg);
 void	fill(size_t *a, char **arg);
+
+// sort.c
+void	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len);
+void	r(size_t *src, size_t *src_len);
 
 #endif
