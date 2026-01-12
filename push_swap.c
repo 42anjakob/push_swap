@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/12 07:12:43 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/12 07:18:09 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int	main(const int argc, char **argv)
 	arg_c = argc - 1;
 
 	// error handling
-	if (arg_c == 0)
+	if (argc == 1)
 		return (0);
-	else if (arg_c == 1)
+	else if (argc == 2)
 	{
 		arg_s = ft_split(argv[1], ' ');
 		if (!arg_s)
@@ -110,7 +110,7 @@ int	main(const int argc, char **argv)
 		bits_loop(&a, &b);
 		
 	// free
-	if (arg_c == 2)
+	if (argc == 2)
 		ft_freeptr((void **)arg_s);
 	free(a.stack);
 	free(b.stack);
