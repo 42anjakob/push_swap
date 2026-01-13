@@ -36,6 +36,13 @@ int		is_sorted(t_a_stack *a);
 
 // sort.c
 void	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len);
+void	s(size_t *src, size_t *src_len);
 void	r(size_t *src, size_t *src_len);
+void	rr(size_t *src, size_t *src_len);
+
+// less_then_six.c
+void	if_three(t_a_stack *a, size_t plus);
+void	if_four(t_a_stack *a, t_b_stack *b);
+void	if_five(t_a_stack *a, t_b_stack *b)
 
 #endif

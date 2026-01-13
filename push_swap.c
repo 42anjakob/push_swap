@@ -15,12 +15,22 @@
 // SORT
 void	simple_sort(t_a_stack *a, t_b_stack *b)
 {
-	t_a_stack	*a_rray;
-	t_b_stack	*b_rray;
-
-	a_rray = a;
-	b_rray = b;
-	a_rray->len = b_rray->len;
+	if (is_sorted(a))
+		return ;
+	else if (a->len == 2)
+		write(1, "sa\n", 3);
+	else if (a->len == 3)
+		if_three(a, 0);
+	else if (a->len == 4)
+	{
+		while ((!is_sorted(a) && a->len == 4) || b->len > 0)
+			if_four(a, b);
+	}
+	else if (a->len == 5)
+	{
+		while ((!is_sorted(a) && a->len == 5) || b->len > 0)
+			if_five(a, b);
+	}
 }
 
 void	radix_sort(t_a_stack *a, t_b_stack *b)
