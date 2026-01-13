@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/12 07:18:09 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/13 05:28:16 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,30 @@ int	main(const int argc, char **argv)
 	arg_s = &argv[1];
 	arg_c = argc - 1;
 
-	// error handling
+	// parsing
 	if (argc == 1)
 		return (0);
 	else if (argc == 2)
 	{
 		arg_s = ft_split(argv[1], ' ');
 		if (!arg_s)
-			return (err(arg_c, arg_s, a.stack, b.stack), 1);
+			return (err(argc, arg_s, a.stack, b.stack), 1);
 		arg_c = 0;
 		while (arg_s[arg_c])
 			arg_c++;
 	}
+
+	// error handling
 	if (!is_int(arg_s) || is_dup(arg_s))
-		return (err(arg_c, arg_s, a.stack, b.stack), 2);
+		return (err(argc, arg_s, a.stack, b.stack), 2);
 
 	// alloc stacks
 	a.stack = malloc(sizeof(size_t) * arg_c);
 	if (!a.stack)
-		return (err(arg_c, arg_s, a.stack, b.stack), 3);
+		return (err(argc, arg_s, a.stack, b.stack), 3);
 	b.stack = malloc(sizeof(size_t) * arg_c);
 	if (!b.stack)
-		return (err(arg_c, arg_s, a.stack, b.stack), 4);
+		return (err(argc, arg_s, a.stack, b.stack), 4);
 	a.len = arg_c;
 	b.len = 0;
 
