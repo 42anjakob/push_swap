@@ -4,7 +4,8 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 SRCS	=	push_swap.c \
 			utils.c \
-			sort.c
+			sort.c \
+			less_then_six.c
 
 LIBFT	=	libft/libft.a
 

@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:49 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/12 07:12:51 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/13 05:11:47 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	fill_index(t_a_stack *a, char **arg);
 int		is_sorted(t_a_stack *a);
 
 // sort.c
-void	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len);
-void	s(size_t *src, size_t *src_len);
-void	r(size_t *src, size_t *src_len);
-void	rr(size_t *src, size_t *src_len);
+int	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len);
+int	s(size_t *src);
+int	r(size_t *src, size_t *src_len);
+int	rr(size_t *src, size_t *src_len);
 
 // less_then_six.c
 void	if_three(t_a_stack *a, size_t plus);
 void	if_four(t_a_stack *a, t_b_stack *b);
-void	if_five(t_a_stack *a, t_b_stack *b)
+void	if_five(t_a_stack *a, t_b_stack *b);
 
 #endif

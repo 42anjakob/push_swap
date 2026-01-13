@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 14:10:13 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/12 07:12:46 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/13 05:01:56 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,11 @@ void	fill_index(t_a_stack *a, char **arg)
 	i = -1;
 	while (++i < a->len)
 	{
-		j = 0;
-		while (j++ < a->len)
-		{
+		j = -1;
+		while (++j < a->len)
 			if (a->stack[j] > i)
-			{
-				k = j;
 				break ;
-			}
-		}
+		k = j;
 		j = -1;
 		while (++j < a->len)
 			if (a->stack[k] > a->stack[j] && a->stack[j] > i)

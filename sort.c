@@ -6,13 +6,13 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 04:52:53 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/12 06:37:12 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/13 05:11:41 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len)
+int	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len)
 {
 	size_t	tmp;
 	size_t	i;
@@ -33,18 +33,20 @@ void	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len)
 	dst[0] = tmp;
 	*src_len -= 1;
 	*dst_len += 1;
+	return (1);
 }
 
-void	s(size_t *src, size_t *src_len)
+int	s(size_t *src)
 {
 	size_t	tmp;
 
 	tmp = src[0];
 	src[0] = src[1];
 	src[1] = tmp;
+	return (1);
 }
 
-void	r(size_t *src, size_t *src_len)
+int	r(size_t *src, size_t *src_len)
 {
 	size_t	tmp;
 	size_t	i;
@@ -57,9 +59,10 @@ void	r(size_t *src, size_t *src_len)
 		i++;
 	}
 	src[*src_len - 1] = tmp;
+	return (1);
 }
 
-void	rr(size_t *src, size_t *src_len)
+int	rr(size_t *src, size_t *src_len)
 {
 	size_t	tmp;
 	size_t	i;
@@ -72,4 +75,5 @@ void	rr(size_t *src, size_t *src_len)
 		i--;
 	}
 	src[0] = tmp;
+	return (1);
 }
