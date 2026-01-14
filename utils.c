@@ -14,7 +14,7 @@
 
 void	err(int argc, char **arg, size_t *a, size_t *b)
 {
-	if (argc == 2)
+	if (argc == 2 && arg)
 		ft_freeptr((void **)arg);
 	if (a)
 		free(a);
@@ -33,9 +33,9 @@ int	is_int(char **arg)
 	while (arg[i])
 	{
 		j = 0;
-		if (arg[i][j++] == '-' || arg[i][j++] == '+')
+		if (arg[i][j] == '-' || arg[i][j] == '+')
 		{
-			if (arg[i][1] == '\0')
+			if (arg[i][++j] == '\0')
 				return (0);
 		}
 		while (arg[i][j++])

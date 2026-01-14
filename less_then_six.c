@@ -59,7 +59,8 @@ void	if_five(t_a_stack *a, t_b_stack *b)
 		p(b->stack, a->stack, &b->len, &a->len);
 		write(1, "pa\npa\n", 6);
 	}
-	else if ((a->stack[0] == 0 || a->stack[0] == 1) && p(a->stack, b->stack, &a->len, &b->len))
+	else if ((a->stack[0] == 0 || a->stack[0] == 1)
+		&& p(a->stack, b->stack, &a->len, &b->len))
 		write(1, "pb\n", 3);
 	else if (a->len == 3)
 	{

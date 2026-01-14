@@ -35,14 +35,17 @@ void	fill_index(t_a_stack *a, char **arg);
 int		is_sorted(t_a_stack *a);
 
 // sort.c
-int	p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len);
-int	s(size_t *src);
-int	r(size_t *src, size_t src_len);
-int	rr(size_t *src, size_t src_len);
+int		p(size_t *src, size_t *dst, size_t *src_len, size_t *dst_len);
+int		s(size_t *src);
+int		r(size_t *src, size_t src_len);
+int		rr(size_t *src, size_t src_len);
 
 // less_then_six.c
 void	if_three(t_a_stack *a, size_t plus);
 void	if_four(t_a_stack *a, t_b_stack *b);
 void	if_five(t_a_stack *a, t_b_stack *b);
+
+// init.c
+int		init(t_a_stack *a, t_b_stack *b, int arg_c);
 
 #endif
