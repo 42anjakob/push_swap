@@ -6,30 +6,30 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 23:55:55 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/13 05:54:20 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/16 20:13:25 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	if_three(t_a_stack *a, size_t plus)
+void	if_three(t_a_stack *a, size_t ft_pos)
 {
-	if (a->stack[0] == 2 + plus && a->stack[1] == 1 + plus
-		&& a->stack[2] == 0 + plus
+	if (a->stack[0] == 2 + ft_pos && a->stack[1] == 1 + ft_pos
+		&& a->stack[2] == 0 + ft_pos
 		&& s(a->stack) && rr(a->stack, a->len))
 		write(1, "sa\nrra\n", 7);
-	else if (a->stack[0] == 2 + plus && a->stack[1] == 0 + plus
-		&& a->stack[2] == 1 + plus
+	else if (a->stack[0] == 2 + ft_pos && a->stack[1] == 0 + ft_pos
+		&& a->stack[2] == 1 + ft_pos
 		&& r(a->stack, a->len))
 		write(1, "ra\n", 3);
-	else if (a->stack[0] == 1 + plus && a->stack[1] == 0 + plus
-		&& a->stack[2] == 2 + plus && s(a->stack))
+	else if (a->stack[0] == 1 + ft_pos && a->stack[1] == 0 + ft_pos
+		&& a->stack[2] == 2 + ft_pos && s(a->stack))
 		write(1, "sa\n", 3);
-	else if (a->stack[0] == 1 + plus && a->stack[1] == 2 + plus
-		&& a->stack[2] == 0 + plus && rr(a->stack, a->len))
+	else if (a->stack[0] == 1 + ft_pos && a->stack[1] == 2 + ft_pos
+		&& a->stack[2] == 0 + ft_pos && rr(a->stack, a->len))
 		write(1, "rra\n", 4);
-	else if (a->stack[0] == 0 + plus && a->stack[1] == 2 + plus
-		&& a->stack[2] == 1 + plus
+	else if (a->stack[0] == 0 + ft_pos && a->stack[1] == 2 + ft_pos
+		&& a->stack[2] == 1 + ft_pos
 		&& r(a->stack, a->len) && s(a->stack) && rr(a->stack, a->len))
 		write(1, "ra\nsa\nrra\n", 10);
 }
