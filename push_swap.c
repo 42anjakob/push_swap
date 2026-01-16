@@ -38,14 +38,17 @@ void	simple_sort(t_a_stack *a, t_b_stack *b)
 	if (is_sorted(a))
 		return ;
 	else if (a->len == 2)
+	{
+		s(a, a->len);
 		write(1, "sa\n", 3);
+	}
 	else if (a->len == 3)
 		if_three(a, 0);
 	else if (a->len == 4)
-		while (!is_sorted(a) && b->len == 0)
+		while (!is_sorted(a) || a->len != 4)
 			if_four(a, b);
 	else if (a->len == 5)
-		while (!is_sorted(a) && b->len == 0)
+		while (!(is_sorted(a)) || a->len != 5)
 			if_five(a, b);
 }
 
