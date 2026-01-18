@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/18 17:28:34 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/18 18:16:37 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ int	main(const int argc, char **argv)
 	if (!init(&a, &b, arg_c))
 		return (err(argc, arg_v, a.stack, b.stack), 3);
 	fill_index(&a, arg_v);
+	if (a.len < 6)
+		simple_sort(&a, &b);
+	else
+		bits_loop(&a, &b);
 	if (argc == 2 && arg_v)
 		ft_freeptr((void **)arg_v);
 	return (free(a.stack), free(b.stack), 0);
