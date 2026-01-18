@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 14:10:13 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/18 17:57:12 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/18 18:00:12 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,24 @@ int	is_dup(char **arg)
 
 void	fill_index(t_a_stack *a, char **arg_v)
 {
-	size_t	n;
+	size_t	index;
 	size_t	i;
 	size_t	j;
 
 	i = -1;
 	while (arg_v[++i])
 		a->stack[i] = ft_atol(arg_v[i]) + 2147483648;
-	n = -1;
-	while (++n < a->len)
+	index = -1;
+	while (++index < a->len)
 	{
 		i = 0;
-		j = -1;
-		while (a->stack[i] <= n)
+		while (a->stack[i] <= index)
 			i++;
+		j = -1;
 		while (++j < a->len)
-		{
-			if (a->stack[i] > a->stack[j] && a->stack[j] >= n)
+			if (a->stack[i] > a->stack[j] && a->stack[j] >= index)
 				i = j;
-		}
-		a->stack[i] = n;
+		a->stack[i] = index;
 	}
 }
 
