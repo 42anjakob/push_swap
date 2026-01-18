@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/16 20:04:46 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/18 17:03:19 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	simple_sort(t_a_stack *a, t_b_stack *b)
 	if (is_sorted(a))
 		return ;
 	else if (a->len == 2)
+	{
+		s(a->stack);
 		write(1, "sa\n", 3);
+	}
 	else if (a->len == 3)
 		if_three(a, 0);
 	else if (a->len == 4)
@@ -111,11 +114,7 @@ int	main(const int argc, char **argv)
 		return (err(argc, arg_v, a.stack, b.stack), 2);
 	if (!init(&a, &b, arg_c))
 		return (err(argc, arg_v, a.stack, b.stack), 3);
-	fill_index(&a, arg_v);
-	if (a.len < 6)
-		simple_sort(&a, &b);
-	else
-		bits_loop(&a, &b);
+	fill_index(&a, &b, arg_v);
 	if (argc == 2 && arg_v)
 		ft_freeptr((void **)arg_v);
 	return (free(a.stack), free(b.stack), 0);
