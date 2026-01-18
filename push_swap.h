@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:49 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/18 17:08:27 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/18 17:58:25 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct b_stack
 void	err(int argc, char **arg, size_t *a, size_t *b);
 int		is_int(char **arg);
 int		is_dup(char **arg);
-void	fill_index(t_a_stack *a, t_b_stack *b, char **arg_v);
+void	fill_index(t_a_stack *a, char **arg_v);
 int		is_sorted(t_a_stack *a);
 
 // sort.c
