@@ -6,7 +6,7 @@
 /*   By: anjakob <anjakob@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 13:37:47 by anjakob           #+#    #+#             */
-/*   Updated: 2026/01/18 17:03:19 by anjakob          ###   ########.fr       */
+/*   Updated: 2026/01/18 17:07:22 by anjakob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	simple_sort(t_a_stack *a, t_b_stack *b)
 	else if (a->len == 3)
 		if_three(a, 0);
 	else if (a->len == 4)
-		while (!is_sorted(a) && b->len == 0)
+		while (!is_sorted(a) || a->len != 4)
 			if_four(a, b);
 	else if (a->len == 5)
-		while (!is_sorted(a) && b->len == 0)
+		while (!(is_sorted(a)) || a->len != 5)
 			if_five(a, b);
 }
 
