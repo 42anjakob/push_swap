@@ -48,7 +48,7 @@ void	simple_sort(t_a_stack *a, t_b_stack *b)
 		while (!is_sorted(a) || a->len != 4)
 			if_four(a, b);
 	else if (a->len == 5)
-		while (!(is_sorted(a)) || a->len != 5)
+		while (!is_sorted(a) || a->len != 5)
 			if_five(a, b);
 }
 
