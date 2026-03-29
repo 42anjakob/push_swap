@@ -1,6 +1,6 @@
 NAME			=	push_swap
 
-CFLAGS			=	-c -Wall -Wextra -Werror
+FLAGS			=	-c -Wall -Wextra -Werror
 
 SRCS			=	push_swap.c \
 					init.c \
@@ -22,11 +22,11 @@ libft_install:
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR) > /dev/null 2>&1
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_ARCHIVE) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_ARCHIVE) -o $(NAME)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(OBJS_DIR)
-	@$(CC) $(CFLAGS) $< -o $@
+	@$(CC) $(FLAGS) $< -o $@
 
 clean:
 	@make -C $(LIBFT_DIR) clean > /dev/null 2>&1
