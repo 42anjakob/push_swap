@@ -1,6 +1,6 @@
 NAME			=	push_swap
 
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-c -Wall -Wextra -Werror
 
 SRCS			=	push_swap.c \
 					init.c \
@@ -26,7 +26,7 @@ $(NAME): $(OBJS)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $< -o $@
 
 clean:
 	@make -C $(LIBFT_DIR) clean > /dev/null 2>&1
@@ -38,4 +38,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re, libft_install
+.PHONY: all clean fclean re libft_install
