@@ -9,10 +9,10 @@ SRCS			=	push_swap.c \
 					less_then_six.c
 
 LIBFT_URL		=	https://github.com/42anjakob/libft.git
-LIBFT_DIR		=	libft/
+LIBFT_DIR		=	libft
 LIBFT_ARCHIVE	=	libft/libft.a
 
-OBJS_DIR		=	objects/
+OBJS_DIR		=	objects
 OBJS			=	${SRCS:%.c=$(OBJS_DIR)/%.o}
 
 all: libft_install $(NAME)
