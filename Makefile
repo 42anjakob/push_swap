@@ -26,7 +26,7 @@ $(NAME): $(OBJS)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@make -C $(LIBFT_DIR) clean > /dev/null 2>&1
