@@ -30,11 +30,11 @@ $(OBJS_DIR)/%.o: %.c
 
 clean:
 	@make -C $(LIBFT_DIR) clean > /dev/null 2>&1
-	@rm -r $(OBJS_DIR)
+	@rm -rf $(OBJS_DIR)
 
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean > /dev/null 2>&1
-	@rm $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
